@@ -82,17 +82,29 @@
 	
 	var department = new _department2.default();
 	var semester = '2016-2017-1';
-	var readyStateChangeHandler = function readyStateChangeHandler(xhttp) {
-	    var onSuccess = arguments.length <= 1 || arguments[1] === undefined ? function () {} : arguments[1];
-	    var onError = arguments.length <= 2 || arguments[2] === undefined ? function () {} : arguments[2];
+	var processTable = function processTable(table) {
+	    var tmpDiv = document.createElement('div');
+	    tmpDiv.innerHTML = table;
+	    var rows = Array.prototype.slice.call(tmpDiv.getElementsByTagName('tr'));
+	    rows.shift();
 	
-	    if (xhttp.readystate === 4) {
-	        if (xhttp.status === 200) {
-	            onSuccess();
-	        } else {
-	            onError();
-	        }
-	    }
+	    return rows.map(function (elem) {
+	        var data = elem.getElementsByTagName('td');
+	        return {
+	            name: data[0].innerHTML,
+	            courseId: data[1].innerHTML,
+	            time: data[2].innerHTML,
+	            location: data[3].innerHTML,
+	            weeks: data[4].innerHTML,
+	            note: data[5].innerHTML,
+	            type: data[6].innerHTML,
+	            class: data[7].innerHTML,
+	            limit: data[8].innerHTML,
+	            course: data[9].innerHTML,
+	            excercise: data[10].innerHTML,
+	            teacher: data[11].innerHTML
+	        };
+	    });
 	};
 	
 	var _class = function () {
@@ -111,7 +123,16 @@
 	
 	            var xhttp = new XMLHttpRequest(),
 	                reqest = 'melyik=kodalapjan&felev=' + semester + '&limit=20&targykod=' + id;
-	            xhttp.onreadystatechange = readyStateChangeHandler(xhttp, onSuccess, onError);
+	            xhttp.onreadystatechange = function () {
+	                if (xhttp.readyState === 4) {
+	                    if (xhttp.status === 200) {
+	                        console.log(processTable(xhttp.responseText));
+	                        onSuccess(processTable(xhttp.responseText));
+	                    } else {
+	                        onError(xhttp.status);
+	                    }
+	                }
+	            };
 	            xhttp.open('POST', this.url, isAsync || false);
 	            xhttp.setRequestHeader("Content-type", "application/json");
 	            xhttp.send(reqest);
