@@ -1,0 +1,12 @@
+version: '2'
+services:
+  web:
+    build:
+        context: .
+        dockerfile: Dockerfile
+    network_mode: "bridge"
+    ports:
+     - "80:80"
+    volumes:
+     - .:/var/www/example.com/public_html/
+    command: [/bin/bash, /usr/share/bin/apacheWatcher.bash]
