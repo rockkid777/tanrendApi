@@ -82,7 +82,7 @@
 	
 	var department = new _department2.default();
 	var semester = '2016-2017-1';
-	var processTable = function processTable(table) {
+	var convertTable = function convertTable(table) {
 	    var tmpDiv = document.createElement('div');
 	    tmpDiv.innerHTML = table;
 	    var rows = Array.prototype.slice.call(tmpDiv.getElementsByTagName('tr'));
@@ -115,8 +115,8 @@
 	    }
 	
 	    _createClass(_class, [{
-	        key: 'getCourseById',
-	        value: function getCourseById(id) {
+	        key: 'getCoursesById',
+	        value: function getCoursesById(id) {
 	            var isAsync = arguments.length <= 1 || arguments[1] === undefined ? true : arguments[1];
 	            var onSuccess = arguments.length <= 2 || arguments[2] === undefined ? function () {} : arguments[2];
 	            var onError = arguments.length <= 3 || arguments[3] === undefined ? function () {} : arguments[3];
@@ -126,8 +126,7 @@
 	            xhttp.onreadystatechange = function () {
 	                if (xhttp.readyState === 4) {
 	                    if (xhttp.status === 200) {
-	                        console.log(processTable(xhttp.responseText));
-	                        onSuccess(processTable(xhttp.responseText));
+	                        onSuccess(convertTable(xhttp.responseText));
 	                    } else {
 	                        onError(xhttp.status);
 	                    }

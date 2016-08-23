@@ -4,7 +4,7 @@ import Department from './department.js';
 
 let department = new Department();
 let semester = '2016-2017-1';
-let processTable = table => {
+let convertTable = table => {
     let tmpDiv = document.createElement('div');
     tmpDiv.innerHTML = table;
     let rows = Array.prototype.slice.call(tmpDiv.getElementsByTagName('tr'));
@@ -34,14 +34,13 @@ export default class {
         this.url = url;
     }
 
-    getCourseById(id, isAsync = true, onSuccess = () => {}, onError = () => {}) {
+    getCoursesById(id, isAsync = true, onSuccess = () => {}, onError = () => {}) {
         let xhttp = new XMLHttpRequest(),
             reqest = `melyik=kodalapjan&felev=${semester}&limit=20&targykod=${id}`;
         xhttp.onreadystatechange = () => {
             if (xhttp.readyState === 4) {
                 if (xhttp.status === 200) {
-                    console.log(processTable(xhttp.responseText));
-                    onSuccess(processTable(xhttp.responseText));
+                    onSuccess(convertTable(xhttp.responseText));
                 } else {
                     onError(xhttp.status);
                 }
