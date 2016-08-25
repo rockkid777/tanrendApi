@@ -34,20 +34,25 @@ export default class {
         this.url = url;
     }
 
-    getCoursesById(id, isAsync = true, onSuccess = () => {}, onError = () => {}) {
+    getCourseByCodeAndSubDep(code, subDep) {
         let xhttp = new XMLHttpRequest(),
-            reqest = `melyik=kodalapjan&felev=${semester}&limit=20&targykod=${id}`;
+            reqest = {
+                jsonrpc: '2.0',
+                id: 'asdf',
+                method: 'getCourseByCodeAndSubDep',
+                params: [code, subDep]
+            };
         xhttp.onreadystatechange = () => {
             if (xhttp.readyState === 4) {
                 if (xhttp.status === 200) {
-                    onSuccess(convertTable(xhttp.responseText));
+                    onSuccess(JSON.parse(xhttp.responseText));
                 } else {
                     onError(xhttp.status);
                 }
             }
         };
-        xhttp.open('POST', this.url, isAsync || false);
+        xhttp.open('POST', this.url, true);
         xhttp.setRequestHeader("Content-type", "application/json");
-        xhttp.send(reqest);
+        xhttp.send(JSON.stringify(reqest));
     }
 }

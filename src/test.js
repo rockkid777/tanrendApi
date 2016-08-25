@@ -2,4 +2,4 @@
 
 import TanrendApi from './index.js';
 
-window.api = new TanrendApi('./proxy.php');
+window.api = new TanrendApi('./api.php');

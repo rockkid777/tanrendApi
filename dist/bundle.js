@@ -55,7 +55,7 @@
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
-	window.api = new _index2.default('./proxy.php'); /*jshint esversion: 6 */
+	window.api = new _index2.default('./api.php'); /*jshint esversion: 6 */
 
 /***/ },
 /* 1 */
@@ -115,26 +115,27 @@
 	    }
 	
 	    _createClass(_class, [{
-	        key: 'getCoursesById',
-	        value: function getCoursesById(id) {
-	            var isAsync = arguments.length <= 1 || arguments[1] === undefined ? true : arguments[1];
-	            var onSuccess = arguments.length <= 2 || arguments[2] === undefined ? function () {} : arguments[2];
-	            var onError = arguments.length <= 3 || arguments[3] === undefined ? function () {} : arguments[3];
-	
+	        key: 'getCourseByCodeAndSubDep',
+	        value: function getCourseByCodeAndSubDep(code, subDep) {
 	            var xhttp = new XMLHttpRequest(),
-	                reqest = 'melyik=kodalapjan&felev=' + semester + '&limit=20&targykod=' + id;
+	                reqest = {
+	                jsonrpc: '2.0',
+	                id: 'asdf',
+	                method: 'getCourseByCodeAndSubDep',
+	                params: [code, subDep]
+	            };
 	            xhttp.onreadystatechange = function () {
 	                if (xhttp.readyState === 4) {
 	                    if (xhttp.status === 200) {
-	                        onSuccess(convertTable(xhttp.responseText));
+	                        onSuccess(JSON.parse(xhttp.responseText));
 	                    } else {
 	                        onError(xhttp.status);
 	                    }
 	                }
 	            };
-	            xhttp.open('POST', this.url, isAsync || false);
+	            xhttp.open('POST', this.url, true);
 	            xhttp.setRequestHeader("Content-type", "application/json");
-	            xhttp.send(reqest);
+	            xhttp.send(JSON.stringify(reqest));
 	        }
 	    }]);
 

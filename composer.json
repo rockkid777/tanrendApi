@@ -1,0 +1,8 @@
+{
+    "require": {
+        "fguillot/json-rpc": "@stable"
+    },
+    "autoload": {
+        "psr-4": {"Tanrend\\": "src/backend"}
+    }
+}

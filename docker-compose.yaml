@@ -2,7 +2,7 @@ version: '2'
 services:
   web:
     build:
-        context: .
+        context: ./docker
         dockerfile: Dockerfile
     network_mode: "bridge"
     ports:
