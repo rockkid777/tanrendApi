@@ -1,5 +1,5 @@
 module.exports = {
-    entry: './src/test.js',
+    entry: './src/frontend/index.js',
     output: {
         path: __dirname + '/dist/',
         filename: 'bundle.js'
@@ -11,7 +11,7 @@ module.exports = {
                 loader: 'babel',
                 query: {
                     cacheDirectory: true,
-                    presets: ['es2015', 'stage-2']
+                    presets: ['es2015', 'stage-2', 'react']
                 }
             }
         ]
