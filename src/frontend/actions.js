@@ -27,7 +27,7 @@ export const askAdvice = () => {
             state.subDepartment,
             (res) => {
                 let semester = parseInt(state.semester);
-                if (res[0].error || res[1].error) {
+                if (res[0].result.errorCode || res[1].result.errorCode) {
                     dispatch(receiveAdvice('Hibás kurzuskód.'));
                 }
                 else if (res[0].result.ajanlott_felev == semester &&
