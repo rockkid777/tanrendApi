@@ -23070,54 +23070,87 @@
 	    var advice = _ref.advice;
 	    return _react2.default.createElement(
 	        'div',
-	        null,
+	        { 'class': 'box_form' },
 	        _react2.default.createElement(
-	            'form',
-	            { onSubmit: function onSubmit(e) {
-	                    e.preventDefault();
-	                    _onSubmit();
-	                } },
+	            'header',
+	            null,
+	            'Kurzus Tanácsadás'
+	        ),
+	        _react2.default.createElement(
+	            'div',
+	            null,
 	            _react2.default.createElement(
-	                'label',
-	                null,
-	                'Féléved száma'
-	            ),
-	            _react2.default.createElement(_field2.default, {
-	                onChange: onSemesterChange,
-	                value: semester
-	            }),
-	            _react2.default.createElement(
-	                'label',
-	                null,
-	                'Szakirány'
-	            ),
-	            _react2.default.createElement(_select2.default, {
-	                onChange: onSubDebChange,
-	                value: subDepartment
-	            }),
-	            _react2.default.createElement(
-	                'label',
-	                null,
-	                'A kurzus'
-	            ),
-	            _react2.default.createElement(_field2.default, {
-	                onChange: function onChange(v) {
-	                    return onCourseChange(v, 1);
-	                },
-	                value: course1
-	            }),
-	            _react2.default.createElement(
-	                'label',
-	                null,
-	                'B kurzus'
-	            ),
-	            _react2.default.createElement(_field2.default, {
-	                onChange: function onChange(v) {
-	                    return onCourseChange(v, 2);
-	                },
-	                value: course2
-	            }),
-	            _react2.default.createElement('input', { type: 'submit' })
+	                'form',
+	                { onSubmit: function onSubmit(e) {
+	                        e.preventDefault();
+	                        _onSubmit();
+	                    } },
+	                _react2.default.createElement(
+	                    'div',
+	                    { 'class': 'notloggedin' },
+	                    _react2.default.createElement(
+	                        'label',
+	                        null,
+	                        'Féléved száma'
+	                    ),
+	                    _react2.default.createElement(
+	                        'div',
+	                        null,
+	                        _react2.default.createElement(_field2.default, {
+	                            onChange: onSemesterChange,
+	                            value: semester
+	                        })
+	                    ),
+	                    _react2.default.createElement(
+	                        'label',
+	                        null,
+	                        'Szakirány'
+	                    ),
+	                    _react2.default.createElement(
+	                        'div',
+	                        null,
+	                        _react2.default.createElement(_select2.default, {
+	                            onChange: onSubDebChange,
+	                            value: subDepartment
+	                        })
+	                    ),
+	                    _react2.default.createElement(
+	                        'label',
+	                        null,
+	                        'A kurzus'
+	                    ),
+	                    _react2.default.createElement(
+	                        'div',
+	                        null,
+	                        _react2.default.createElement(_field2.default, {
+	                            onChange: function onChange(v) {
+	                                return onCourseChange(v, 1);
+	                            },
+	                            value: course1
+	                        })
+	                    ),
+	                    _react2.default.createElement(
+	                        'label',
+	                        null,
+	                        'B kurzus'
+	                    ),
+	                    _react2.default.createElement(
+	                        'div',
+	                        null,
+	                        _react2.default.createElement(_field2.default, {
+	                            onChange: function onChange(v) {
+	                                return onCourseChange(v, 2);
+	                            },
+	                            value: course2
+	                        })
+	                    ),
+	                    _react2.default.createElement(
+	                        'div',
+	                        null,
+	                        _react2.default.createElement('input', { type: 'submit', value: 'Mutat' })
+	                    )
+	                )
+	            )
 	        ),
 	        _react2.default.createElement(
 	            'p',
